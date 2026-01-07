@@ -1,101 +1,316 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Mon Site</title>
+    <style>
+        :root {
+            --primary: #4a9a8e;
+            --text: #2c2c2c;
+            --muted: #6b6b6b;
+            --bg: #fafafa;
+            --radius: 14px;
+        }
 
-  <!-- Styles simples et modernes -->
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 0;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .container {
-      max-width: 500px;
-      margin: 50px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #f0faf0 0%, #d7f7d9 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-    h2 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 25px;
-    }
+        .container {
+            background: #ffffff;
+            padding: 35px 30px;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+        }
 
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-      color: #555;
-    }
+        h1 {
+            text-align: center;
+            color: var(--text);
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
 
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      box-sizing: border-box;
-      font-size: 16px;
-      resize: vertical;
-    }
+        .form-group {
+            margin-bottom: 18px;
+        }
 
-    textarea {
-      min-height: 120px;
-    }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: var(--muted);
+        }
 
-    button {
-      width: 100%;
-      background-color: #007BFF;
-      color: #fff;
-      border: none;
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: calc(var(--radius)/2);
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: var(--bg);
+        }
 
-    button:hover {
-      background-color: #0056b3;
-    }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(74, 154, 142, 0.1);
+        }
 
-    p.note {
-      text-align: center;
-      font-size: 14px;
-      color: #777;
-    }
-  </style>
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        button:hover:not(:disabled) {
+            background: #3d857a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            background: var(--muted);
+            transform: none;
+        }
+
+        .message {
+            padding: 12px;
+            border-radius: calc(var(--radius)/2);
+            margin-bottom: 18px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .error {
+            background: #fdf2f2;
+            color: #dc3545;
+            border: 1px solid #f8d7da;
+        }
+
+        /* Modal Popup */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px 25px;
+            border-radius: var(--radius);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .modal h2 {
+            color: var(--primary);
+            margin-bottom: 18px;
+            font-size: 1.7em;
+        }
+
+        .modal p {
+            color: var(--muted);
+            margin-bottom: 25px;
+            font-size: 1.05em;
+        }
+
+        .modal button {
+            width: auto;
+            padding: 12px 28px;
+            margin: 0 8px;
+            font-size: 1rem;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal button:first-of-type {
+            background: var(--primary);
+            color: white;
+        }
+
+        .modal button:first-of-type:hover {
+            background: #3d857a;
+        }
+
+        .modal button:last-of-type {
+            background: var(--muted);
+            color: white;
+        }
+
+        .modal button:last-of-type:hover {
+            background: #5a5a5a;
+        }
+
+        .honeypot {
+            display: none !important;
+            position: absolute !important;
+            left: -9999px !important;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+
 </head>
 <body>
+    <div class="container" id="container">
+        <h1>Contactez-moi</h1>
+        <div id="message" class="message"></div>
+        <form id="contactForm">
+            <!-- Honeypot pour anti-spam -->
+            <div class="honeypot">
+                <input type="text" name="_honey" tabindex="-1" autocomplete="off">
+            </div>
 
-<div class="container">
-  <h2>Contactez-nous</h2>
+            <div class="form-group">
+                <label for="name">Nom</label>
+                <input type="text" id="name" name="name" required>
+            </div>
 
-  <form action="https://formsubmit.co/cotinat.louis@gmail.com" method="POST">
-    <input type="hidden" name="_captcha" value="false">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
 
-    <label for="name">Nom</label>
-    <input type="text" id="name" name="name" placeholder="Votre nom" required>
+            <div class="form-group">
+                <label for="subject">Sujet</label>
+                <input type="text" id="subject" name="_subject" required>
+            </div>
 
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" placeholder="Votre email" required>
+            <div class="form-group">
+                <label for="msg">Message</label>
+                <textarea id="msg" name="message" required></textarea>
+            </div>
 
-    <label for="message">Message</label>
-    <textarea id="message" name="message" placeholder="Votre message" required></textarea>
+            <!-- Paramètres Formsubmit -->
+            <input type="hidden" name="_next" value="">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="box">
+            <input type="hidden" name="_autocomplete_response" value="">
 
-    <button type="submit">Envoyer</button>
-  </form>
+            <button type="submit" id="submitBtn">Envoyer</button>
+        </form>
+    </div>
 
-  <p class="note">Nous vous répondrons dans les plus brefs délais.</p>
-</div>
+    <!-- Modal de succès -->
+    <div id="successModal" class="modal-overlay">
+        <div class="modal">
+            <h2>✅ Succès !</h2>
+            <p>Message envoyé avec succès !<br>Voulez-vous revenir au site ?</p>
+            <button onclick="goHome()">Revenir au site</button>
+            <button onclick="closeModal()">Fermer</button>
+        </div>
+    </div>
 
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const submitBtn = document.getElementById('submitBtn');
+            const messageDiv = document.getElementById('message');
+            const honeyPot = form.querySelector('input[name="_honey"]').value;
+
+            if (honeyPot) {
+                showError('Erreur de validation.');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Envoi en cours...';
+            messageDiv.style.display = 'none';
+
+            try {
+                const formData = new FormData(form);
+                const response = await fetch('https://formsubmit.co/a883e7f9c62e30b690df0ef38f75a141', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    // Masquer le formulaire et montrer le popup
+                    document.getElementById('container').classList.add('hidden');
+                    document.getElementById('successModal').style.display = 'block';
+                    form.reset();
+                } else {
+                    throw new Error('Erreur lors de l\'envoi');
+                }
+            } catch (error) {
+                showError('Erreur lors de l\'envoi. Veuillez réessayer.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Envoyer';
+            }
+        });
+
+        function showError(text) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = 'message error';
+            messageDiv.style.display = 'block';
+        }
+
+        function goHome() {
+            window.location.href = './index.html';
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+            document.getElementById('container').classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
