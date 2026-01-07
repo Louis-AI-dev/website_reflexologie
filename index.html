@@ -110,6 +110,25 @@
       gap: 30px;
     }
 
+    /* ---------- CADEAUX ---------- */
+    #cadeaux {
+      max-width: 900px;
+      margin: auto;
+      padding: 50px 20px;
+    }
+
+    #cadeaux h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2rem;
+    }
+
+    .cadeaux {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
     .card {
       background: white;
       border-radius: var(--radius);
@@ -309,7 +328,7 @@
 
   <!-- SERVICES -->
   <section id="services">
-    <h2>Les séances proposées</h2>
+    <h2>Les soins proposé</h2>
     <div class="services">
       <div class="card">
         <img src="images/reflexo_podale.png" alt="Réflexologie podale" class="service-img">
@@ -327,12 +346,12 @@
         </p>
         <div class="duration">Durée : 1 h</div>
         <div class="price">60 €</div>
-        <a href="https://calendly.com/muriel-meurisse/reflexologie" class="btn-primary" target="_blank">Réserver</a>
+        <a href="https://calendly.com/muriel-meurisse/reflexologie-plantaire" class="btn-primary" target="_blank">Réserver</a>
       </div>
 
       <div class="card">
         <img src="images/reflexo_palmaire.png" alt="Réflexologie palmaire" class="service-img">
-        <h3>Réflexologie palmaire</h3>
+        <h3>Réflexologie palmaire.</h3>
 
         <p class="card-text">
           Si vos pieds /chevilles ne vous permettent pas d'utiliser la réflexologie 
@@ -344,12 +363,12 @@
         </p>
         <div class="duration">Durée : 30 min</div>
         <div class="price">45 €</div>
-        <a href="LIEN_CALENDLY_ICI" class="btn-primary" target="_blank">Réserver</a>
+        <a href="https://calendly.com/muriel-meurisse/reflexologie-palmaire" class="btn-primary" target="_blank">Réserver</a>
       </div>
 
       <div class="card">
         <img src="images/shampissage.png" alt="shampissage" class="service-img">
-        <h3>Massage traditionnel indien du crâne : shampissage</h3>
+        <h3>Massage traditionnel indien du crâne : shampissage.</h3>
 
         <p class="card-text">
           Massage pratiqué sur un patient habillé et assis.
@@ -360,12 +379,12 @@
         </p>  
         <div class="duration">Durée : 30 min</div>
         <div class="price">50 €</div>
-        <a href="LIEN_CALENDLY_ICI" class="btn-primary" target="_blank">Réserver</a>
+        <a href="https://calendly.com/muriel-meurisse/shampissage" class="btn-primary" target="_blank">Réserver</a>
       </div>
 
       <div class="card">
         <img src="images/jane_sheehan.png" alt="Lecture des pieds" class="service-img">
-        <h3>Lecture des pieds selon la méthode de Jane Sheehan</h3>
+        <h3>Lecture des pieds selon la méthode de Jane Sheehan.</h3>
 
         <p class="card-text">
           Vos pieds sont petits, grands, trapus, vos orteils sont en marteau, vos talons 
@@ -375,10 +394,47 @@
         </p>
         <div class="duration">Durée : 20 min</div>
         <div class="price">40 €</div>
-        <a href="LIEN_CALENDLY_ICI" class="btn-primary" target="_blank">Réserver</a>
+        <a href="https://calendly.com/muriel-meurisse/lecture-des-pieds" class="btn-primary" target="_blank">Réserver</a>
       </div>
     </div>
   </section>
+
+  <!-- Cadeaux -->
+  <section id="cadeaux">
+    <h2>Offrez des soins à vos proches !</h2>
+
+    <div class="cadeaux">
+
+      <div class="card">
+        <img src="images/soin_cadeau.png" alt="cadeaux1" class="service-img">
+        <h3>Offrez un vrai moment de détente.</h3>
+        <p>Valeurs 60 /50/45 ou 40 euros suivant le moment choisi.</p>
+        <a href="contact.html" class="btn-primary" target="_blank">Contactez-nous</a>
+      </div>
+
+      <div class="card">
+        <img src="images/soin_pack_cadeaux.png" alt="cadeaux2" class="service-img">
+        <h3>Offrez des moments de détente.</h3>
+
+        <p><strong>Pack découverte – 180 €</strong></p>
+        <p>• 1 soin plantaire</p>
+        <p>• 1 soin palmaire</p>
+        <p>• 1 massage crânien</p>
+        <p>• 1 lecture des pieds</p>
+
+        <p><strong>Autres formules :</strong></p>
+        <p>• 3 soins plantaires : 150 €</p>
+        <p>• Plantaire + palmaire : 100 €</p>
+        <p>• Palmaire + shampi : 90 €</p>
+        <p>• Plantaire + lecture des pieds : 90 €</p>
+
+        <a href="contact.html" class="btn-primary" target="_blank">Contactez-nous</a>
+      </div>
+
+    </div>
+  </section>
+
+
   <footer>
     © 2025 by Muriel Meurisse Réflexologue.
   </footer>
